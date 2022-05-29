@@ -9,7 +9,7 @@ build:
 	CGO_ENABLED=0 go build -a -ldflags '-extldflags "-s -w -static"' -o $(EXE) .
 
 docker:
-	docker build -t gcr.io/pingcap-public/deadmansswitch -f build/Dockerfile .
+	docker buildx build --platform linux/amd64,linux/arm64 -o type=registry -t thiagoalmeidasa/pingcap-dead-mans-switch -f build/Dockerfile .
 
 clean:
 	rm -f $(EXE)
